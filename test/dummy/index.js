@@ -1,4 +1,4 @@
 var path = require('path');
-module.exports = require(path.join(__dirname, '..', '..'))(__dirname);
+module.exports = require(path.join(__dirname, '..', '..'))(__dirname, {json: true});
 
 

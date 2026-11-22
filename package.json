@@ -1,6 +1,6 @@
 {
   "name": "@drifted/indexify",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "module to find all of the files in a directory and require and export them.",
   "repository": {
     "type": "git",
