@@ -2,8 +2,12 @@ var fs = require('fs');
 var path = require('path');
 
 module.exports = function(dirname, options={}) {
-  if (options.json == undefined) {
+   if (options.json == undefined) {
     options.json = false;
+  } 
+
+  if (options.verbose == undefined) {
+    options.verbose = false;
   }
 
   return fs.readdirSync(dirname).reduce((mod, file) => { 
@@ -28,10 +32,14 @@ module.exports = function(dirname, options={}) {
         try {
           mod[file] = require(path.join(dirname, file));
         } catch(error) {
-          console.log(error.message);
-          console.log('')
-          console.log("Add a index.js with require('drifted/indexify')(__dirname) to that directory.")
-          console.log('')
+          
+          if (options.verbose) {
+            console.log(error.message);
+            console.log('');
+            console.log("Add a index.js with require('drifted/indexify')(__dirname) to that directory.")
+            console.log('');
+          }
+          
           mod[file] = {};
         }
       }
