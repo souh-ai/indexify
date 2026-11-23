@@ -16,12 +16,14 @@ module.exports = function(dirname, options={}) {
       if (name != 'index' && (ext == '.js' || (ext == '.json' && options.json == true))) {
         should = true;
       }
+
       if (should) {
         mod[name] = require(path.join(dirname, name));
       }
     } else {
       var filepath = path.join(dirname, file);
       const stats = fs.statSync(filepath);
+      
       if (stats.isDirectory()) {
         mod[file] = require(path.join(dirname, file));
       }
