@@ -25,7 +25,15 @@ module.exports = function(dirname, options={}) {
       const stats = fs.statSync(filepath);
       
       if (stats.isDirectory()) {
-        mod[file] = require(path.join(dirname, file));
+        try {
+          mod[file] = require(path.join(dirname, file));
+        } catch(error) {
+          console.log(error.message);
+          console.log('')
+          console.log("Add a index.js with require('drifted/indexify')(__dirname) to that directory.")
+          console.log('')
+          mod[file] = {};
+        }
       }
     }
     
